@@ -13,6 +13,10 @@ const User = new mongoose.Schema({
     unique: true,
     lowercase: true
   },
+  last_name: {
+    type: String,
+    required: true
+  },
   password: {
     type: String,
     require: true,

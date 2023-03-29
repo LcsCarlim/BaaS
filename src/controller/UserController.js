@@ -1,9 +1,9 @@
 const Joi = require('joi');
 
 const { addTokenToBlackList, tokenIsInBlackList } = require('../services/User/BlackListService');
-const getUserByIdService = require('../services/User/GetUserByIdService');
-const listUsersService = require('../services/User/ListUsersService');
-const createUsersService = require('../services/User/CreateUsersService');
+const findUserByIdService = require('../services/User/FindUserByIdService');
+const getUserService = require('../services/User/GetUserService');
+const createUserService = require('../services/User/CreateUserService');
 const createUserAuthService = require('../services/User/CreateUserAuthService');
 const deleteUserService = require('../services/User/DeleteUserService');
 const updateUserService = require('../services/User/UpdateUserService');
@@ -11,7 +11,7 @@ const updateUserService = require('../services/User/UpdateUserService');
 module.exports = {
   async list (req, res) {
     try {
-      const users = await listUsersService();
+      const users = await getUserService();
       return res.json(users);
     } catch (error) {
       return res.status(500).json({
@@ -21,10 +21,10 @@ module.exports = {
     }
   },
 
-  async getById (req, res) {
+  async findById (req, res) {
     const { id } = req.params;
     try {
-      const user = await getUserByIdService(id);
+      const user = await findUserByIdService(id);
       res.status(200).json(user);
     } catch (error) {
       res.status(404).json({ error: error.message });
@@ -48,7 +48,7 @@ module.exports = {
     try {
       await schema.validateAsync({ name, email, password });
 
-      const users = await createUsersService(name, email, password);
+      const users = await createUserService(name, email, password);
 
       return res.status(201).json(users);
     } catch (error) {

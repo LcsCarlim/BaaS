@@ -1,12 +1,10 @@
 const { Router } = require('express');
-
-const UserController = require('../controller/UserController');
-
 const routes = Router();
+const UserController = require('../controller/UserController');
 
 routes.get('/users', UserController.list);
 
-routes.get('/users/:id', UserController.getById);
+routes.get('/users/:id', UserController.findById);
 
 routes.post('/auth/register', UserController.createUserAuth);
 
