@@ -7,15 +7,15 @@ const User = new mongoose.Schema({
     type: String,
     required: true
   },
+  last_name: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
     require: true,
     unique: true,
     lowercase: true
-  },
-  last_name: {
-    type: String,
-    required: true
   },
   password: {
     type: String,
@@ -23,9 +23,18 @@ const User = new mongoose.Schema({
     selector: false
   },
 
+  address: {
+    type: String,
+    required: true
+  },
+  phone_number: {
+    type: Number,
+    required: true
+  },
   createAt: {
     type: Date,
     default: Date.now
+    // time stamps
   }
 });
 

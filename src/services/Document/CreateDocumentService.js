@@ -7,6 +7,11 @@ module.exports = async (filename, name, document_type, user_id) => {
   });
   if (!userExists) throw new Error('User does not exists!');
 
+  const documentExists = await DocumentModel.findOne({
+    user_id
+  });
+  if (documentExists) throw new Error('User already has a document!');
+
   const accountUser = await DocumentModel.create({
     filename,
     name,
@@ -14,5 +19,5 @@ module.exports = async (filename, name, document_type, user_id) => {
     user_id
   });
 
-  return accountUser;
+  return { accountUser };
 };

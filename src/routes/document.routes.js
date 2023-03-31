@@ -1,11 +1,21 @@
 const { Router } = require('express');
+
+const multer = require('multer');
 const routes = Router();
+
+const multerConfig = require('../config/MulterConfig');
 const DocumentController = require('../controller/DocumentController');
+const userAuth = require('../middlewares/CheckTokenMiddleware');
 
-routes.post('/upload', DocumentController.upload);
+routes.post('/upload',
+  multer(multerConfig).single('filename'),
+  userAuth,
+  DocumentController.upload);
 
-routes.get('/users/documents', DocumentController.list);
+routes.get('/', DocumentController.list);
 
-routes.get('/users/document/:user_id', DocumentController.getfindById);
+routes.get('/user',
+  userAuth,
+  DocumentController.findById);
 
-module.exports = { routes };
+module.exports = routes;

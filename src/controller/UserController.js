@@ -32,23 +32,29 @@ module.exports = {
   },
 
   async createUser (req, res) {
-    const { name, email, password } = req.body;
+    const { name, last_name, email, password, address, phone_number } = req.body;
 
     const schema = Joi.object({
       name: Joi.string()
+        .required(),
+      last_name: Joi.string()
         .required(),
       email: Joi.string()
         .email(),
       password: Joi.string()
         .required()
-        .min(8)
+        .min(8),
+      address: Joi.string()
+        .required(),
+      phone_number: Joi.number()
+        .required()
 
     });
 
     try {
-      await schema.validateAsync({ name, email, password });
+      await schema.validateAsync({ name, last_name, email, password, address, phone_number });
 
-      const users = await createUserService(name, email, password);
+      const users = await createUserService(name, last_name, email, password, address, phone_number);
 
       return res.status(201).json(users);
     } catch (error) {
@@ -112,9 +118,7 @@ module.exports = {
 
       res.status(200).json({ msg: 'Authentication successful', token });
     } catch (error) {
-      console.log(error);
-
-      res.status(500).json({ msg: error });
+      res.status(500).json({ msg: error.message });
     }
   },
   async logout (req, res) {
