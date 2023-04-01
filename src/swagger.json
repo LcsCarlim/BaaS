@@ -1,0 +1,263 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API do BaaS",
+    "description": "Essa API tem o objetivo a manipulação de dados",
+    "termsOfService": "http://localhost:3333/terms",
+    "contact": {
+      "email": "lucas.carlim@zuvia.com.br"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333"
+    }
+  ],
+  "paths": {
+    "/users/register": {
+      "post": {
+        "summary": "Cadastro de usuários",
+        "description": "Essa rota será responsável por cadastrar um novo usuário",
+        "tags": [
+          "Criar usuário"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "500": {
+            "description": "Registration failed!"
+          },
+          "200": {
+            "description": "Usuário criado com sucesso!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/auth": {
+      "post": {
+        "summary": "Autenticação de um usuário",
+        "description": "Essa rota será responsável por autenticar um usuário",
+        "tags": [
+          "Autenticar usuário"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Autenticado com sucesso!"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "Usuários"
+        ],
+        "description": "Buscar todos os usuários",
+        "summary": "Buscar todos os usuários",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "Usuário por ID"
+        ],
+        "description": "Buscar usuário pelo ID",
+        "summary": "Buscar usuário pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do usuário para busca",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "users/{id}": {
+      "patch": {
+        "tags": [
+          "Alterar dados"
+        ],
+        "description": "Alterar dados do usuário",
+        "summary": "Alterar dados do usuário",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do usuário para busca"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Senha alterada!"
+          }
+        }
+      }
+    },
+    "/documents/upload": {
+      "post": {
+        "tags": [
+          "Upload"
+        ],
+        "security": [
+          {
+             "bearer_token": [] 
+             }
+            ],
+        "summary": "Envio de documento",
+        "description": "Envio de documento",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "category_id": {
+                    "type": "integer"
+                    },
+                  "file": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+          "description": "Upload efetuado"
+          }
+        }
+      }
+    }
+},
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "number"
+          }
+        },
+        "required": ["name", "last_name", "email", "password", "address", "phone_number"]
+      }
+    }
+  },
+  "securitySchemes": {
+    "bearer_token": {
+      "type": "http",
+      "description": "Coloque seu token aqui!",
+      "scheme": "bearer",
+      "in": "header",
+      "bearerFormat": "JWT"
+    }
+  },
+  "security": [
+    {
+    "bearer_token": {
+      "type": "http",
+      "scheme": "bearer_token",
+      "bearerFormat": "JWT"
+    }
+  }
+ ]
+}

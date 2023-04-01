@@ -11,20 +11,11 @@ module.exports = async (user_id) => {
     _id: user_id
   });
   if (!userExists) throw new Error('User_id already exists!');
-  console.log(userExists);
 
   const account = await AccountModel.create({
     user_id,
     name: userExists.name,
     last_name: userExists.last_name
   });
-  return {
-    name: account.name,
-    last_name: account.last_name,
-    user_id: account.user_id,
-    id: account.id,
-    balance: account.balance,
-    savings: account.savings
-
-  };
+  return account;
 };

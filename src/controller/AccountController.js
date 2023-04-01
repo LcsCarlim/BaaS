@@ -5,6 +5,8 @@ const deleteAccountService = require('../services/Account/DeleteAccountService')
 const updateAccountService = require('../services/Account/UpdateAccountService');
 const depositAccountBalanceService = require('../services/Account/DepositAccountBalanceService');
 const transferAccountBalanceService = require('../services/Account/TransferAccountBalanceService');
+const savingsAccountService = require('../services/Account/SavingsAccountService');
+const balanceAccountService = require('../services/Account/BalanceAccountService');
 
 module.exports = {
   async createAccount (req, res) {
@@ -94,6 +96,37 @@ module.exports = {
       const { balance } = req.body;
 
       const transfer = await transferAccountBalanceService(user_id, id, balance);
+      res.json(transfer);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        error: 'Something wrong happened, try again',
+        message: error.message || 'Transfer failed!'
+      });
+    }
+  },
+
+  async savings (req, res) {
+    try {
+      const { id } = req.user;
+      const { deposit } = req.body;
+
+      const transfer = await savingsAccountService(id, deposit);
+      res.json(transfer);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        error: 'Something wrong happened, try again',
+        message: error.message || 'Transfer failed!'
+      });
+    }
+  },
+  async balance (req, res) {
+    try {
+      const { id } = req.user;
+      const { deposit } = req.body;
+
+      const transfer = await balanceAccountService(id, deposit);
       res.json(transfer);
     } catch (error) {
       console.log(error);

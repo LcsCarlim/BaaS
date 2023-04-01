@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-
 const bcrypt = require('bcryptjs');
+const moment = require('moment');
+require('moment/locale/pt-br');
 
 const User = new mongoose.Schema({
   name: {
@@ -13,7 +14,7 @@ const User = new mongoose.Schema({
   },
   email: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
     lowercase: true
   },
@@ -30,11 +31,13 @@ const User = new mongoose.Schema({
   phone_number: {
     type: Number,
     required: true
-  },
-  createAt: {
-    type: Date,
-    default: Date.now
-    // time stamps
+  }
+},
+{
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+    currentTime: () => moment().locale('pt-br')
   }
 });
 

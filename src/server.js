@@ -1,5 +1,7 @@
-require('dotenv').config();
 const config = require('.');
+
+require('dotenv').config();
+
 try {
   config.open('mongodb://localhost/task').then(() => {
     config.app.listen(3333, () => {

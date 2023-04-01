@@ -10,12 +10,16 @@ const userAuth = require('../middlewares/CheckTokenMiddleware');
 routes.post('/upload',
   multer(multerConfig).single('filename'),
   userAuth,
-  DocumentController.upload);
+  DocumentController.upload
+);
 
-routes.get('/', DocumentController.list);
+routes.get('/',
+  DocumentController.list
+);
 
 routes.get('/user',
   userAuth,
-  DocumentController.findById);
+  DocumentController.findById
+);
 
 module.exports = routes;

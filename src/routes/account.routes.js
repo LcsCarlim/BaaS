@@ -7,22 +7,43 @@ const AccountController = require('../controller/AccountController');
 
 routes.post('/',
   userAuth,
-  AccountController.createAccount);
+  AccountController.createAccount
+);
 
 routes.post('/deposit',
   userAuth,
-  AccountController.depositBalance);
+  AccountController.depositBalance
+);
 
 routes.post('/transfer/:user_id',
   userAuth,
-  AccountController.transferBalances);
+  AccountController.transferBalances
+);
 
-routes.get('/', AccountController.listAccount);
+routes.post('/transfering/savings',
+  userAuth,
+  AccountController.savings
+);
 
-routes.get('/:user_id', AccountController.findByIdAccount);
+routes.post('/transfering/balance',
+  userAuth,
+  AccountController.balance
+);
 
-routes.delete('/:user_id', AccountController.deleteAccount);
+routes.get('/',
+  AccountController.listAccount
+);
 
-routes.patch('/:user_id', AccountController.updateAccountService);
+routes.get('/:user_id',
+  AccountController.findByIdAccount
+);
+
+routes.delete('/:user_id',
+  AccountController.deleteAccount
+);
+
+routes.patch('/:user_id',
+  AccountController.updateAccountService
+);
 
 module.exports = routes;

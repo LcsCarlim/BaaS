@@ -20,3 +20,11 @@ module.exports = async (email, password) => {
 
   return token;
 };
+
+// "securitySchemes": {
+//   "bearerAuth": {
+//     "type": "http",
+//     "scheme": "bearer",
+//     "bearerFormat": "JWT"
+//   }
+// }
