@@ -11,14 +11,14 @@ module.exports = {
   async createAccount (req, res) {
     try {
       const { id } = req.user;
-
       const accounts = await createAccountService(id);
+
       return res.json(accounts);
     } catch (error) {
       console.log(error);
       return res.status(500).json({
         error: 'Something wrong happened, try again',
-        message: 'Creation failed!'
+        message: error.message
       });
     }
   },
@@ -72,7 +72,7 @@ module.exports = {
       console.log(error);
       return res.status(500).json({
         error: 'Something wrong happened, try again',
-        message: 'Deposit failed!'
+        message: error.message
       });
     }
   },
