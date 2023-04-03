@@ -1,7 +1,11 @@
 const DocumentModel = require('../../database/model/DocumentModel');
 
-module.exports = async () => {
+module.exports = async (role) => {
+  if (role !== 'Admin') throw new Error('Must be an admin');
+
   const documents = await DocumentModel.find();
+
+  if (documents.length === 0) throw new Error('Documents not found');
 
   return documents;
 };

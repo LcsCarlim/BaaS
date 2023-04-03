@@ -1,12 +1,15 @@
 const { Router } = require('express');
 const routes = Router();
 const UserController = require('../controller/UserController');
+const userAuth = require('../middlewares/CheckTokenMiddleware');
 
 routes.get('/',
+  userAuth,
   UserController.list
 );
 
 routes.get('/:id',
+  userAuth,
   UserController.findById
 );
 
@@ -22,7 +25,8 @@ routes.post('/register',
   UserController.createUser
 );
 
-routes.delete('/:id',
+routes.delete('/delete/:id',
+  userAuth,
   UserController.deleteUser
 );
 

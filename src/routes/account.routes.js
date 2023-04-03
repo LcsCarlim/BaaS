@@ -31,15 +31,13 @@ routes.post('/transfering/balance',
 );
 
 routes.get('/get',
+  userAuth,
   AccountController.listAccount
 );
 
 routes.get('/:user_id',
+  userAuth,
   AccountController.findByIdAccount
-);
-
-routes.delete('/:user_id',
-  AccountController.deleteAccount
 );
 
 routes.patch('/:user_id',

@@ -13,18 +13,11 @@ module.exports = async (email, password) => {
   const secret = process.env.ACCESS_TOKEN_SECRET;
 
   const token = jwt.sign({
-    id: user._id
+    id: user._id,
+    role: user.role
   },
   secret
   );
 
   return token;
 };
-
-// "securitySchemes": {
-//   "bearerAuth": {
-//     "type": "http",
-//     "scheme": "bearer",
-//     "bearerFormat": "JWT"
-//   }
-// }

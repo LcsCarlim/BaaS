@@ -14,6 +14,7 @@ routes.post('/upload',
 );
 
 routes.get('/',
+  userAuth,
   DocumentController.list
 );
 

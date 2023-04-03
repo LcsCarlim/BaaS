@@ -10,21 +10,23 @@ const updateUserService = require('../services/User/UpdateUserService');
 
 module.exports = {
   async list (req, res) {
+    const { role } = req.user;
     try {
-      const users = await getUserService();
+      const users = await getUserService(role);
       return res.json(users);
     } catch (error) {
       return res.status(500).json({
         error: 'Something wrong happened, try again',
-        message: 'Users not found!'
+        message: error.message
       });
     }
   },
 
   async findById (req, res) {
+    const { role } = req.user;
     const { id } = req.params;
     try {
-      const user = await findUserByIdService(id);
+      const user = await findUserByIdService(id, role);
       res.status(200).json(user);
     } catch (error) {
       res.status(404).json({ error: error.message });
@@ -66,10 +68,11 @@ module.exports = {
   },
 
   async deleteUser (req, res) {
+    const { role } = req.user;
     const { id } = req.params;
 
     try {
-      await deleteUserService(id);
+      await deleteUserService(id, role);
 
       res.status(201).json({ message: 'User deleted!' });
     } catch (error) {
@@ -78,7 +81,7 @@ module.exports = {
   },
 
   async updateUser (req, res) {
-    const { email } = req.params;
+    const { id } = req.params;
 
     const { password } = req.body;
 
@@ -91,7 +94,7 @@ module.exports = {
     try {
       await schema.validateAsync({ password });
 
-      await updateUserService(email, password);
+      await updateUserService(id, password);
 
       return res.status(200).json({
         message: 'Password changed!'

@@ -1,15 +1,19 @@
 const UserModel = require('../../database/model/UserModel');
+const DocumentModel = require('../../database/model/DocumentModel');
+const AccountModel = require('../../database/model/AccountModel');
 
-module.exports = async (id) => {
-  const userExists = await UserModel.findOne({ _id: id });
+module.exports = async (user_id, role) => {
+  if (role !== 'Admin') throw new Error('Must be an admin');
 
-  if (!userExists) throw new Error('User not exists');
+  const userExists = await UserModel.findOne({ _id: user_id });
 
-  const deleteUser = await UserModel.deleteOne({ _id: id });
+  if (userExists.length === 0) throw new Error('User not found');
 
-  if (deleteUser) {
-    return 'User deleted!';
-  } else {
-    throw new Error('Internal server error');
+  try {
+    await AccountModel.deleteOne({ user_id });
+    await DocumentModel.deleteOne({ user_id });
+    await UserModel.findByIdAndDelete(user_id);
+  } catch (error) {
+    throw new Error('Error deleting user');
   }
 };

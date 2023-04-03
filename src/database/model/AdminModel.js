@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const moment = require('moment');
 require('moment/locale/pt-br');
 
-const User = new mongoose.Schema({
+const Admin = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -31,10 +31,6 @@ const User = new mongoose.Schema({
   phone_number: {
     type: Number,
     required: true
-  },
-  role: {
-    type: String,
-    default: 'User'
   }
 },
 {
@@ -45,11 +41,11 @@ const User = new mongoose.Schema({
   }
 });
 
-User.pre('save', async function (next) {
+Admin.pre('save', async function (next) {
   const hashedPassword = await bcrypt.hash(this.password, 12);
   this.password = hashedPassword;
 
   next();
 });
 
-module.exports = mongoose.model('User', User);
+module.exports = mongoose.model('Admin', Admin);

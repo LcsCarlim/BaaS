@@ -12,9 +12,9 @@ module.exports = async (req, res, next) => {
     const secret = process.env.ACCESS_TOKEN_SECRET;
     const decoded = jwt.verify(token, secret);
 
-    const { id } = decoded;
+    const { id, role } = decoded;
 
-    req.user = { id };
+    req.user = { id, role };
     next();
   } catch (error) {
     res.status(400).json({ msg: 'Invalid token!' });

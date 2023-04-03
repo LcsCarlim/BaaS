@@ -1,7 +1,6 @@
 const createAccountService = require('../services/Account/CreateAccountService');
 const getAccountService = require('../services/Account/GetAccountService');
 const findAccountByIdService = require('../services/Account/FindAccountByIdService');
-const deleteAccountService = require('../services/Account/DeleteAccountService');
 const updateAccountService = require('../services/Account/UpdateAccountService');
 const depositAccountBalanceService = require('../services/Account/DepositAccountBalanceService');
 const transferAccountBalanceService = require('../services/Account/TransferAccountBalanceService');
@@ -25,38 +24,27 @@ module.exports = {
   },
 
   async listAccount (req, res) {
+    const { role } = req.user;
     try {
-      const accounts = await getAccountService();
+      const accounts = await getAccountService(role);
       return res.json(accounts);
     } catch (error) {
       return res.status(500).json({
         error: 'Something wrong happened, try again',
-        message: 'Accounts not found!'
+        message: error.message
       });
     }
   },
   async findByIdAccount (req, res) {
+    const { role } = req.user;
     const { user_id } = req.params;
     try {
-      const account = await findAccountByIdService(user_id);
+      const account = await findAccountByIdService(user_id, role);
       res.status(200).json(account);
     } catch (error) {
       res.status(404).json({ error: error.message });
     }
   },
-
-  async deleteAccount (req, res) {
-    const { user_id } = req.params;
-
-    try {
-      await deleteAccountService(user_id);
-
-      res.status(201).json({ message: 'Account deleted!' });
-    } catch (error) {
-      res.status(400).json({ error: error.message });
-    }
-  },
-
   async updateAccountService (req, res) {
     const { user_id } = req.params;
 

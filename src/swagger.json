@@ -86,17 +86,6 @@
         ],
         "summary": "Listar todos os usuários",
         "description": "Listar todos os usuários existentes. Obtendo informações completas do usuário.",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "limit",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK!",
@@ -107,6 +96,34 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Você não é Admin, vagabundo"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "Buscar usuário pelo ID",
+        "description": "Essa rota é responsável em buscar um usuário pelo ID. Requer ser um Admin pra obter informações.",
+        "parameters": [
+          {
+          "name": "id",
+          "in": "path",
+          "description": "ID USER",
+          "required": true,
+          "schema": {
+          "type": "string"
+          }
+         }
+        ],
+        "responses": {
+          "200": {
+          "description": "Success"
           }
         }
       }
@@ -142,6 +159,31 @@
         "responses": {
           "201": {
             "description": "Senha alterada!"
+          }
+        }
+      }
+    },
+    "/users/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "Deletar usuário do sistema",
+        "description": "Essa rota é responsável em deletar um usuário do sistema. É necessário ser Admin.",
+        "parameters":[ 
+          {
+          "name": "id",
+          "in": "path",
+          "description": "User_ID",
+          "required": true,
+          "schema": {
+          "type": "string"
+          }
+         }
+        ],
+        "responses": {
+          "200":{
+            "description": "Success"
           }
         }
       }
@@ -187,17 +229,6 @@
         ],
         "summary": "Buscar todos os documentos",
         "description": "Essa rota será responsável em listar todos os documentos. Será necessário estar logado para efetuar a ação.",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "limit",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK!",
@@ -208,6 +239,31 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/documents/{id}": {
+      "get": {
+        "tags": [
+          "Documento"
+        ],
+        "summary": "Buscar documento pelo ID",
+        "description": "Essa rota é responsável em buscar um documento pelo ID. Requer ser um Admin pra obter informações.",
+        "parameters":[ 
+          {
+          "name": "id",
+          "in": "path",
+          "description": "User_ID",
+          "required": true,
+          "schema": {
+          "type": "string"
+          }
+         }
+        ],
+        "responses": {
+          "200":{
+            "description": "Success"
           }
         }
       }
@@ -248,6 +304,31 @@
         "responses": {
           "200": {
             "description": "OK!"
+          }
+        }
+      }
+    },
+    "/accounts/{user_id}": {
+      "get": {
+        "tags": [
+          "Conta"
+        ],
+        "summary": "Buscar conta pelo ID",
+        "description": "Essa rota é responsável em buscar uma conta pelo ID. Requer ser um Admin pra obter informações.",
+        "parameters":[ 
+          {
+          "name": "user_id",
+          "in": "path",
+          "description": "User_ID",
+          "required": true,
+          "schema": {
+          "type": "string"
+          }
+         }
+        ],
+        "responses": {
+          "200":{
+            "description": "Success"
           }
         }
       }

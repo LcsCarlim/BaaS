@@ -25,21 +25,23 @@ module.exports = {
   },
 
   async list (req, res) {
+    const { role } = req.user;
     try {
-      const documents = await getDocumentService();
+      const documents = await getDocumentService(role);
       return res.status(200).json(documents);
     } catch (error) {
       return res.status(500).json({
         error: 'Something wrong happened, try again',
-        message: 'Documents not found!'
+        message: error.message
       });
     }
   },
 
   async findById (req, res) {
-    const { id } = req.user;
+    const { role } = req.user;
+    const { id } = req.params;
     try {
-      const document = await findDocumentByIdService(id);
+      const document = await findDocumentByIdService(id, role);
       res.status(200).json(document);
     } catch (error) {
       res.status(404).json({ error: error.message });
