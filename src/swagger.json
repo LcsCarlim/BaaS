@@ -18,7 +18,7 @@
     "/users/register": {
       "post": {
         "summary": "Cadastro de usuários",
-        "description": "Essa rota será responsável por cadastrar um novo usuário",
+        "description": "Essa rota será responsável por cadastrar um novo usuário. Segue a requisição com as informações corretas e com uma senha no mínimo de 8 caracteres.",
         "tags": [
           "Usuário"
         ],
@@ -51,7 +51,7 @@
     "/users/auth": {
       "post": {
         "summary": "Autenticação de um usuário",
-        "description": "Essa rota será responsável por autenticar um usuário",
+        "description": "Essa rota será responsável por autenticar um usuário gerando o token de login. Copie esse token para prosseguir com as futuras requisição que serão necessário.",
         "tags": [
           "Usuário"
         ],
@@ -84,8 +84,8 @@
         "tags": [
           "Usuário"
         ],
-        "description": "Buscar todos os usuários",
-        "summary": "Buscar todos os usuários",
+        "summary": "Listar todos os usuários",
+        "description": "Listar todos os usuários existentes. Obtendo informações completas do usuário.",
         "parameters": [
           {
             "name": "limit",
@@ -116,8 +116,8 @@
         "tags": [
           "Usuário"
         ],
-        "description": "Alterar dados do usuário",
-        "summary": "Alterar dados do usuário",
+        "summary": "Alterar a senha",
+        "description": "Essa rota se responsabiliza em alterar a senha do usuário, sendo assim, é necessário estar logado para efetuar a ação. Logo após isso será desconectado e terá que gerar um novo token com a senha nova.",
         "parameters": [
           {
             "name": "email",
@@ -152,7 +152,7 @@
           "Documento"
         ],
         "summary": "Envio de documento",
-        "description": "Envio de documento",
+        "description": "Essa rota será responsável por envio da documentação referente ao usuário. É necessário estar logado.",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -185,8 +185,8 @@
         "tags": [
           "Documento"
         ],
-        "description": "Buscar todos os documentos",
         "summary": "Buscar todos os documentos",
+        "description": "Essa rota será responsável em listar todos os documentos. Será necessário estar logado para efetuar a ação.",
         "parameters": [
           {
             "name": "limit",
@@ -218,7 +218,7 @@
           "Conta"
         ],
         "summary": "Criação de conta",
-        "description": "Criação de conta",
+        "description": "Essa rota é responsável em criar uma conta do usuário. É necessário estar logado para criar a conta, caso contrário terá acesso negado.",
         "responses": {
           "201": {
             "description": "Conta criada"
@@ -232,8 +232,8 @@
         "tags": [
           "Conta"
         ],
-        "description": "Buscar todas as contas",
-        "summary": "Buscar todas as contas",
+        "summary": "Listar todas as contas",
+        "description": "Essa rota será responsável em listar todas as contas. Será necessário estar logado para efetuar a ação. É necessário estar logado.",
         "parameters": [
           {
             "name": "limit",
@@ -258,7 +258,7 @@
           "Conta"
         ],
         "summary": "Depositar valor na conta",
-        "description": "Depositar valor na conta",
+        "description": "Essa rota será responsável em depositar um valor no saldo da conta do usuário. É necessário estar logado para efetuar o depósito.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -285,8 +285,8 @@
         "tags": [
           "Conta"
         ],
-        "summary": "Transferir de conta pra poupança",
-        "description": "Transferir de conta pra poupança",
+        "summary": "Transferir do saldo pra poupança",
+        "description": "Essa rota será responsável em transferir um valor do saldo pra poupança. É necessário estar logado. ",
         "requestBody": {
           "content": {
             "application/json": {
@@ -313,8 +313,8 @@
         "tags": [
           "Conta"
         ],
-        "summary": "Transferir de poupança praconta",
-        "description": "Transferir de poupança pra conta",
+        "summary": "Transferir de poupança pro saldo",
+        "description": "Essa rota será responsável em transferir um valor da poupança pro saldo. É necessário estar logado.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -341,8 +341,8 @@
         "tags": [
           "Conta"
         ],
-        "description": "Transferir para outra conta",
         "summary": "Transferir para outra conta",
+        "description": "Essa rota será responsável em fazer uma transferência do seu saldo pra outra conta de um outro usuário. É necessário estar logado.",
         "parameters": [
           {
             "name": "id",
