@@ -50,6 +50,7 @@ module.exports = {
         .required(),
       phone_number: Joi.number()
         .required()
+        .min(11)
 
     });
 
