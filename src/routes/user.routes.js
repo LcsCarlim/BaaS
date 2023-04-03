@@ -8,6 +8,11 @@ routes.get('/',
   UserController.list
 );
 
+routes.get('/self',
+  userAuth,
+  UserController.listInformation
+);
+
 routes.get('/:id',
   userAuth,
   UserController.findById

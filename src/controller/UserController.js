@@ -3,6 +3,7 @@ const Joi = require('joi');
 const { addTokenToBlackList, tokenIsInBlackList } = require('../services/User/BlackListService');
 const findUserByIdService = require('../services/User/FindUserByIdService');
 const getUserService = require('../services/User/GetUserService');
+const getUserSelf = require('../services/User/GetUserSelf');
 const createUserService = require('../services/User/CreateUserService');
 const createUserAuthService = require('../services/User/CreateUserAuthService');
 const deleteUserService = require('../services/User/DeleteUserService');
@@ -13,6 +14,19 @@ module.exports = {
     const { role } = req.user;
     try {
       const users = await getUserService(role);
+      return res.json(users);
+    } catch (error) {
+      return res.status(500).json({
+        error: 'Something wrong happened, try again',
+        message: error.message
+      });
+    }
+  },
+
+  async listInformation (req, res) {
+    try {
+      const { id } = req.user;
+      const users = await getUserSelf(id);
       return res.json(users);
     } catch (error) {
       return res.status(500).json({
@@ -48,7 +62,7 @@ module.exports = {
         .min(8),
       address: Joi.string()
         .required(),
-      phone_number: Joi.number()
+      phone_number: Joi.string()
         .required()
         .min(11)
 

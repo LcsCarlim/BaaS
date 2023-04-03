@@ -98,7 +98,24 @@
             }
           },
           "500": {
-            "description": "Você não é Admin, vagabundo"
+            "description": "Error"
+          }
+        }
+      }
+    },
+    "/users/self": {
+      "get": {
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "Pegar informação do usuário logado",
+        "description": "Essa rota será responsável em pegar informações do usuário logado.",
+        "responses": {
+          "200": {
+            "description": "OK!"
+          },
+          "500": {
+            "description": "Error"
           }
         }
       }
@@ -477,7 +494,7 @@
             "type": "string"
           },
           "phone_number": {
-            "type": "number"
+            "type": "string"
           }
         },
         "required": ["name", "last_name", "email", "password", "address", "phone_number"]
