@@ -111,38 +111,7 @@
         }
       }
     },
-    "/users/{id}": {
-      "get": {
-        "tags": [
-          "Usuário"
-        ],
-        "description": "Buscar usuário pelo ID",
-        "summary": "Buscar usuário pelo ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID do usuário para busca",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK!",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "users/{id}": {
+    "/users/{email}": {
       "patch": {
         "tags": [
           "Usuário"
@@ -151,9 +120,9 @@
         "summary": "Alterar dados do usuário",
         "parameters": [
           {
-            "name": "id",
+            "name": "email",
             "in": "path",
-            "description": "ID do usuário para busca"
+            "description": "Email do usuário para busca"
           }
         ],
         "requestBody": {
@@ -243,31 +212,6 @@
         }
       }
     },
-    "/documents/{id}": {
-      "get": {
-        "tags": [
-          "Documento"
-        ],
-        "description": "Buscar documento pelo ID",
-        "summary": "Buscar documento pelo ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID do documento para busca",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK!"
-            
-          }
-        }
-      }
-    },
     "/accounts": {
       "post": {
         "tags": [
@@ -313,8 +257,8 @@
         "tags": [
           "Conta"
         ],
-        "summary": "Essa rota será responsável para depositar",
-        "description": "Essa rota será responsável para depositar",
+        "summary": "Depositar valor na conta",
+        "description": "Depositar valor na conta",
         "requestBody": {
           "content": {
             "application/json": {
@@ -341,8 +285,8 @@
         "tags": [
           "Conta"
         ],
-        "summary": "Essa rota será responsável para transferir pra poupança",
-        "description": "Essa rota será responsável para transferir pra poupança",
+        "summary": "Transferir de conta pra poupança",
+        "description": "Transferir de conta pra poupança",
         "requestBody": {
           "content": {
             "application/json": {
@@ -369,8 +313,8 @@
         "tags": [
           "Conta"
         ],
-        "summary": "Essa rota será responsável para transferir pra conta",
-        "description": "Essa rota será responsável para transferir pra conta",
+        "summary": "Transferir de poupança praconta",
+        "description": "Transferir de poupança pra conta",
         "requestBody": {
           "content": {
             "application/json": {

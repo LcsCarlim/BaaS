@@ -26,7 +26,7 @@ routes.delete('/:id',
   UserController.deleteUser
 );
 
-routes.patch('/:id',
+routes.patch('/:email',
   UserController.updateUser
 );
 

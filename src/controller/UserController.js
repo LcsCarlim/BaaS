@@ -78,7 +78,7 @@ module.exports = {
   },
 
   async updateUser (req, res) {
-    const { id } = req.params;
+    const { email } = req.params;
 
     const { password } = req.body;
 
@@ -91,7 +91,7 @@ module.exports = {
     try {
       await schema.validateAsync({ password });
 
-      await updateUserService(id, password);
+      await updateUserService(email, password);
 
       return res.status(200).json({
         message: 'Password changed!'
