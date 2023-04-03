@@ -30,7 +30,7 @@ routes.post('/transfering/balance',
   AccountController.balance
 );
 
-routes.get('/',
+routes.get('/get',
   AccountController.listAccount
 );
 

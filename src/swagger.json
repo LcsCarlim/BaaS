@@ -20,7 +20,7 @@
         "summary": "Cadastro de usuários",
         "description": "Essa rota será responsável por cadastrar um novo usuário",
         "tags": [
-          "Criar usuário"
+          "Usuário"
         ],
         "requestBody": {
           "content": {
@@ -53,7 +53,7 @@
         "summary": "Autenticação de um usuário",
         "description": "Essa rota será responsável por autenticar um usuário",
         "tags": [
-          "Autenticar usuário"
+          "Usuário"
         ],
         "requestBody": {
           "content": {
@@ -82,7 +82,7 @@
     "/users": {
       "get": {
         "tags": [
-          "Usuários"
+          "Usuário"
         ],
         "description": "Buscar todos os usuários",
         "summary": "Buscar todos os usuários",
@@ -114,7 +114,7 @@
     "/users/{id}": {
       "get": {
         "tags": [
-          "Usuário por ID"
+          "Usuário"
         ],
         "description": "Buscar usuário pelo ID",
         "summary": "Buscar usuário pelo ID",
@@ -145,7 +145,7 @@
     "users/{id}": {
       "patch": {
         "tags": [
-          "Alterar dados"
+          "Usuário"
         ],
         "description": "Alterar dados do usuário",
         "summary": "Alterar dados do usuário",
@@ -180,13 +180,8 @@
     "/documents/upload": {
       "post": {
         "tags": [
-          "Upload"
+          "Documento"
         ],
-        "security": [
-          {
-             "bearer_token": [] 
-             }
-            ],
         "summary": "Envio de documento",
         "description": "Envio de documento",
         "requestBody": {
@@ -194,11 +189,14 @@
             "multipart/form-data": {
               "schema": {
                 "properties": {
-                  "category_id": {
-                    "type": "integer"
-                    },
-                  "file": {
+                  "name": {
+                    "type":"string"
+                  },
+                  "document_type": {
                     "type": "string"
+                    },
+                  "filename": {
+                    "type": "file"
                   }
                 },
                 "type": "object"
@@ -212,8 +210,227 @@
           }
         }
       }
+    },
+    "/documents": {
+      "get": {
+        "tags": [
+          "Documento"
+        ],
+        "description": "Buscar todos os documentos",
+        "summary": "Buscar todos os documentos",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/getDocument"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/documents/{id}": {
+      "get": {
+        "tags": [
+          "Documento"
+        ],
+        "description": "Buscar documento pelo ID",
+        "summary": "Buscar documento pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do documento para busca",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK!"
+            
+          }
+        }
+      }
+    },
+    "/accounts": {
+      "post": {
+        "tags": [
+          "Conta"
+        ],
+        "summary": "Criação de conta",
+        "description": "Criação de conta",
+        "responses": {
+          "201": {
+            "description": "Conta criada"
+          }
+        }
+      }
+      
+    },
+    "/accounts/get": {
+      "get": {
+        "tags": [
+          "Conta"
+        ],
+        "description": "Buscar todas as contas",
+        "summary": "Buscar todas as contas",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK!"
+          }
+        }
+      }
+    },
+    "/accounts/deposit": {
+      "post": {
+        "tags": [
+          "Conta"
+        ],
+        "summary": "Essa rota será responsável para depositar",
+        "description": "Essa rota será responsável para depositar",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "balance": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Valor depositado!"
+          }
+        }
+      }
+    },
+    "/accounts/transfering/savings": {
+      "post": {
+        "tags": [
+          "Conta"
+        ],
+        "summary": "Essa rota será responsável para transferir pra poupança",
+        "description": "Essa rota será responsável para transferir pra poupança",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deposit": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Valor depositado!"
+          }
+        }
+      }
+    },
+    "/accounts/transfering/balance": {
+      "post": {
+        "tags": [
+          "Conta"
+        ],
+        "summary": "Essa rota será responsável para transferir pra conta",
+        "description": "Essa rota será responsável para transferir pra conta",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deposit": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Valor depositado!"
+          }
+        }
+      }
+    },
+    "/accounts/transfer/{id}": {
+      "post": {
+        "tags": [
+          "Conta"
+        ],
+        "description": "Transferir para outra conta",
+        "summary": "Transferir para outra conta",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do usuário para busca",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "balance": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Valor transferido!"
+          }
+        }
+      }
     }
-},
+  },
   "components": {
     "schemas": {
       "User": {
@@ -240,16 +457,28 @@
         },
         "required": ["name", "last_name", "email", "password", "address", "phone_number"]
       }
-    }
-  },
-  "securitySchemes": {
-    "bearer_token": {
-      "type": "http",
-      "description": "Coloque seu token aqui!",
-      "scheme": "bearer",
-      "in": "header",
-      "bearerFormat": "JWT"
-    }
+    },
+    "securitySchemes": {
+      "bearer_token": {
+        "type": "http",
+        "description": "Coloque seu token aqui!",
+        "scheme": "bearer",
+        "in": "header",
+        "bearerFormat": "JWT"
+      }
+    },
+    "getDocument": {
+      "name": {
+        "type":"string"
+      },
+      "document_type": {
+        "type": "string"
+        },
+      "filename": {
+        "type": "file"
+      }
+    },
+    "required": ["name", "document_type", "filename"]
   },
   "security": [
     {

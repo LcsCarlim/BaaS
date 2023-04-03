@@ -12,7 +12,7 @@ module.exports = async (user_id, id, deposit) => {
   await accountPayer.save();
 
   const accountReciver = await AccountModel.findOne({ user_id });
-  if (!accountReciver) throw new Error('Account not found!');
+  if (!accountReciver) throw new Error(`Account: ${user_id} not found!`);
 
   accountReciver.balance += deposit;
   await accountReciver.save();

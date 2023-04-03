@@ -17,7 +17,7 @@ routes.get('/',
   DocumentController.list
 );
 
-routes.get('/user',
+routes.get('/:id',
   userAuth,
   DocumentController.findById
 );
