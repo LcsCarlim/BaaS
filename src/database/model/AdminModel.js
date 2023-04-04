@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const moment = require('moment');
-require('moment/locale/pt-br');
 
 // Só é possível se tornar Admin pelo banco de dados
 
@@ -38,8 +36,7 @@ const Admin = new mongoose.Schema({
 {
   timestamps: {
     createdAt: 'created_at',
-    updatedAt: 'updated_at',
-    currentTime: () => moment().locale('pt-br')
+    updatedAt: 'updated_at'
   }
 });
 

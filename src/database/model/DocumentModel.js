@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const moment = require('moment');
-require('moment/locale/pt-br');
 
 const Upload = new mongoose.Schema({
   user_id: {
@@ -23,8 +21,7 @@ const Upload = new mongoose.Schema({
 {
   timestamps: {
     createdAt: 'created_at',
-    updatedAt: 'updated_at',
-    currentTime: () => moment().locale('pt-br')
+    updatedAt: 'updated_at'
   }
 });
 
