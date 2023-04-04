@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs');
 const moment = require('moment');
 require('moment/locale/pt-br');
 
+// Só é possível se tornar Admin pelo banco de dados
+
 const Admin = new mongoose.Schema({
   name: {
     type: String,
