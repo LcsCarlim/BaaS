@@ -239,9 +239,11 @@
         },
         "responses": {
           "201": {
-          "description": "Upload efetuado"
+            "description": "Upload efetuado"
           },
-          "401": "Not authorized"
+          "401": {
+            "description":"Not authorized"
+          }
         }
       }
     },
@@ -322,17 +324,6 @@
         ],
         "summary": "Listar todas as contas",
         "description": "Essa rota será responsável em listar todas as contas. Será necessário estar logado para efetuar a ação. É necessário estar logado.",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "limit",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK!"

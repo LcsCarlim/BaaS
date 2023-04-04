@@ -17,9 +17,8 @@ module.exports = {
         document_type,
         id
       );
-      return res.json(accounts);
+      return res.status(201).json(accounts);
     } catch (error) {
-      console.log(error);
       return res.status(500).json({
         error: 'Something wrong happened, try again',
         message: error.message || 'Upload failed!'

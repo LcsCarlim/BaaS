@@ -2,6 +2,7 @@ const { Router } = require('express');
 const routes = Router();
 const UserController = require('../controller/UserController');
 const userAuth = require('../middlewares/CheckTokenMiddleware');
+const userLogout = require('../middlewares/LogoutMiddleware');
 
 routes.get('/',
   userAuth,
@@ -23,6 +24,7 @@ routes.post('/auth',
 );
 
 routes.post('/logout',
+  userLogout,
   UserController.logout
 );
 
