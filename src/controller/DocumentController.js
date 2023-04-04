@@ -44,7 +44,10 @@ module.exports = {
       const document = await findDocumentByIdService(id, role);
       res.status(200).json(document);
     } catch (error) {
-      res.status(404).json({ error: error.message });
+      res.status(404).json({
+        error: 'Something wrong happened, try again',
+        message: error.message
+      });
     }
   }
 };

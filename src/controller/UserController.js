@@ -44,7 +44,10 @@ module.exports = {
       const user = await findUserByIdService(id, role);
       res.status(200).json(user);
     } catch (error) {
-      res.status(404).json({ error: error.message });
+      res.status(404).json({
+        error: 'Something wrong happened, try again',
+        message: error.message
+      });
     }
   },
 
@@ -92,7 +95,10 @@ module.exports = {
 
       res.status(201).json({ message: 'User deleted!' });
     } catch (error) {
-      res.status(400).json({ error: error.message });
+      res.status(400).json({
+        error: 'Something wrong happened, try again',
+        message: error.message
+      });
     }
   },
 
@@ -116,7 +122,10 @@ module.exports = {
         message: 'Password changed!'
       });
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      return res.status(500).json({
+        error: 'Something wrong happened, try again',
+        message: error.message
+      });
     }
   },
 
@@ -135,15 +144,20 @@ module.exports = {
 
       const token = await createUserAuthService(email, password);
 
-      res.status(200).json({ msg: 'Authentication successful', token });
+      res.status(200).json({ message: 'Authentication successful', token });
     } catch (error) {
-      res.status(500).json({ msg: error.message });
+      res.status(500).json({
+        error: 'Something wrong happened, try again',
+        message: error.message
+      });
     }
   },
   async logout (req, res) {
     const token = req.headers.authorization.split(' ')[1];
     if (tokenIsInBlackList(token)) {
-      return res.status(400).json({ error: 'Token already invalidated' });
+      return res.status(400).json({
+        error: 'Token already invalidated'
+      });
     }
     addTokenToBlackList(token);
 

@@ -73,7 +73,10 @@ module.exports = {
         message: 'Balance changed!'
       });
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      return res.status(500).json({
+        error: 'Something wrong happened, try again',
+        message: error.message
+      });
     }
   },
 
