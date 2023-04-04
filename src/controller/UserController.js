@@ -73,9 +73,23 @@ module.exports = {
     });
 
     try {
-      await schema.validateAsync({ name, last_name, email, password, address, phone_number });
+      await schema.validateAsync({
+        name,
+        last_name,
+        email,
+        password,
+        address,
+        phone_number
+      });
 
-      const users = await createUserService(name, last_name, email, password, address, phone_number);
+      const users = await createUserService(
+        name,
+        last_name,
+        email,
+        password,
+        address,
+        phone_number
+      );
 
       return res.status(201).json(users);
     } catch (error) {
@@ -93,7 +107,9 @@ module.exports = {
     try {
       await deleteUserService(id, role);
 
-      res.status(201).json({ message: 'User deleted!' });
+      res.status(201).json({
+        message: 'User deleted!'
+      });
     } catch (error) {
       res.status(400).json({
         error: 'Something wrong happened, try again',
@@ -140,11 +156,17 @@ module.exports = {
         .min(8)
     });
     try {
-      await schema.validateAsync({ email, password });
+      await schema.validateAsync({
+        email,
+        password
+      });
 
       const token = await createUserAuthService(email, password);
 
-      res.status(200).json({ message: 'Authentication successful', token });
+      res.status(200).json({
+        message: 'Authentication successful',
+        token
+      });
     } catch (error) {
       res.status(500).json({
         error: 'Something wrong happened, try again',
@@ -161,6 +183,8 @@ module.exports = {
     }
     addTokenToBlackList(token);
 
-    return res.status(200).json({ message: 'Logout successful' });
+    return res.status(200).json({
+      message: 'Logout successful'
+    });
   }
 };

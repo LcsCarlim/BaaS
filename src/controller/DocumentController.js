@@ -11,7 +11,12 @@ module.exports = {
       const { id } = req.user;
       const { filename } = req.file;
 
-      const accounts = await createDocumentService(filename, name, document_type, id);
+      const accounts = await createDocumentService(
+        filename,
+        name,
+        document_type,
+        id
+      );
       return res.json(accounts);
     } catch (error) {
       console.log(error);

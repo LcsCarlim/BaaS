@@ -1,7 +1,9 @@
 const AccountModel = require('../../database/model/AccountModel');
 
 module.exports = async (id) => {
-  const user = await AccountModel.findOne({ user_id: id });
+  const user = await AccountModel.findOne({
+    user_id: id
+  });
 
   return {
     name: user.name,

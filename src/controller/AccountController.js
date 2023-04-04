@@ -55,10 +55,17 @@ module.exports = {
     const { role } = req.user;
     const { user_id } = req.params;
     try {
-      const account = await findAccountByIdService(user_id, role);
+      const account = await findAccountByIdService(
+        user_id,
+        role
+      );
+
       res.status(200).json(account);
     } catch (error) {
-      res.status(404).json({ error: error.message });
+      res.status(404).json({
+        error: 'Something wrong happened, try again',
+        message: error.message
+      });
     }
   },
   async updateAccountService (req, res) {
@@ -67,7 +74,10 @@ module.exports = {
     const { balance } = req.body;
 
     try {
-      await updateAccountService(user_id, balance);
+      await updateAccountService(
+        user_id,
+        balance
+      );
 
       return res.status(200).json({
         message: 'Balance changed!'
@@ -85,7 +95,10 @@ module.exports = {
       const { id } = req.user;
       const { balance } = req.body;
 
-      const deposit = await depositAccountBalanceService(id, balance);
+      const deposit = await depositAccountBalanceService(
+        id,
+        balance
+      );
       res.json(deposit);
     } catch (error) {
       console.log(error);
@@ -102,7 +115,11 @@ module.exports = {
       const { id } = req.user;
       const { balance } = req.body;
 
-      const transfer = await peerToPeerService(user_id, id, balance);
+      const transfer = await peerToPeerService(
+        user_id,
+        id,
+        balance
+      );
       res.json(transfer);
     } catch (error) {
       console.log(error);
@@ -118,7 +135,10 @@ module.exports = {
       const { id } = req.user;
       const { deposit } = req.body;
 
-      const transfer = await savingsAccountService(id, deposit);
+      const transfer = await savingsAccountService(
+        id,
+        deposit
+      );
       res.json(transfer);
     } catch (error) {
       console.log(error);
@@ -133,7 +153,10 @@ module.exports = {
       const { id } = req.user;
       const { deposit } = req.body;
 
-      const transfer = await balanceAccountService(id, deposit);
+      const transfer = await balanceAccountService(
+        id,
+        deposit
+      );
       res.json(transfer);
     } catch (error) {
       console.log(error);

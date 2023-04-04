@@ -17,6 +17,9 @@ module.exports = async (req, res, next) => {
     req.user = { id, role };
     next();
   } catch (error) {
-    res.status(400).json({ msg: 'Invalid token!' });
+    res.status(400).json({
+      error: 'Invalid token!',
+      message: error.message
+    });
   }
 };

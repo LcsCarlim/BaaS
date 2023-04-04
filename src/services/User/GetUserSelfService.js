@@ -1,7 +1,9 @@
 const UserModel = require('../../database/model/UserModel');
 
 module.exports = async (id) => {
-  const user = await UserModel.findById({ _id: id });
+  const user = await UserModel.findById({
+    _id: id
+  });
 
   return {
     name: user.name,

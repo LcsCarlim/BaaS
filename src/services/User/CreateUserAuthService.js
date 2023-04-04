@@ -3,7 +3,9 @@ const jwt = require('jsonwebtoken');
 const UserModel = require('../../database/model/UserModel');
 
 module.exports = async (email, password) => {
-  const user = await UserModel.findOne({ email });
+  const user = await UserModel.findOne({
+    email
+  });
   if (!user) throw new Error("Email doesn't exists!");
 
   const auth = await compare(password, user.password);
