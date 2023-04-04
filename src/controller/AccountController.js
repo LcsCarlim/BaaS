@@ -3,7 +3,7 @@ const getAccountService = require('../services/Account/GetAccountService');
 const findAccountByIdService = require('../services/Account/FindAccountByIdService');
 const updateAccountService = require('../services/Account/UpdateAccountService');
 const depositAccountBalanceService = require('../services/Account/DepositAccountBalanceService');
-const transferAccountBalanceService = require('../services/Account/TransferAccountBalanceService');
+const peerToPeerService = require('../services/Account/PeerToPeerService');
 const savingsAccountService = require('../services/Account/SavingsAccountService');
 const balanceAccountService = require('../services/Account/BalanceAccountService');
 const getAccountSelfService = require('../services/Account/GetAccountSelfService');
@@ -99,7 +99,7 @@ module.exports = {
       const { id } = req.user;
       const { balance } = req.body;
 
-      const transfer = await transferAccountBalanceService(user_id, id, balance);
+      const transfer = await peerToPeerService(user_id, id, balance);
       res.json(transfer);
     } catch (error) {
       console.log(error);
