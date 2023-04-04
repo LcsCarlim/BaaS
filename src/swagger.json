@@ -75,6 +75,9 @@
         "responses": {
           "201": {
             "description": "Autenticado com sucesso!"
+          },
+          "500": {
+            "description": "Error"
           }
         }
       }
@@ -141,6 +144,9 @@
         "responses": {
           "200": {
           "description": "Success"
+          },
+          "404": {
+            "description": "Not found"
           }
         }
       }
@@ -169,6 +175,9 @@
         "responses": {
           "201": {
             "description": "Senha alterada!"
+          },
+          "401": {
+            "description": "Not authorized"
           }
         }
       }
@@ -194,6 +203,9 @@
         "responses": {
           "200":{
             "description": "Success"
+          },
+          "404": {
+            "description": "Not found"
           }
         }
       }
@@ -228,7 +240,8 @@
         "responses": {
           "201": {
           "description": "Upload efetuado"
-          }
+          },
+          "401": "Not authorized"
         }
       }
     },
@@ -249,6 +262,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not found"
           }
         }
       }
@@ -274,6 +290,9 @@
         "responses": {
           "200":{
             "description": "Success"
+          },
+          "404": {
+            "description": "Not found"
           }
         }
       }
@@ -288,6 +307,9 @@
         "responses": {
           "201": {
             "description": "Conta criada"
+          },
+          "404": {
+            "description": "Not found"
           }
         }
       }
@@ -314,6 +336,9 @@
         "responses": {
           "200": {
             "description": "OK!"
+          },
+          "500": {
+            "description": "Error"
           }
         }
       }
@@ -356,6 +381,9 @@
         "responses": {
           "200":{
             "description": "Success"
+          },
+          "404": {
+            "description": "Not found"
           }
         }
       }
@@ -383,7 +411,10 @@
         },
         "responses": {
           "200": {
-            "description": "Valor depositado!"
+            "description": "Amount transferred"
+          },
+          "401": {
+            "description": "Not authorized"
           }
         }
       }
@@ -411,7 +442,10 @@
         },
         "responses": {
           "200": {
-            "description": "Valor depositado!"
+            "description": "Amount transferred"
+          },
+          "401": {
+            "description": "Not authorized"
           }
         }
       }
@@ -439,7 +473,10 @@
         },
         "responses": {
           "200": {
-            "description": "Valor depositado!"
+            "description": "Amount transferred"
+          },
+          "401": {
+            "description": "Not authorized"
           }
         }
       }
@@ -477,7 +514,10 @@
         },
         "responses": {
           "201": {
-            "description": "Valor transferido!"
+            "description": "Amount transferred"
+          },
+          "401": {
+            "description": "Not authorized"
           }
         }
       }
