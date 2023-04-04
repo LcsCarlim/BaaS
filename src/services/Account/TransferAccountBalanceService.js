@@ -17,5 +17,9 @@ module.exports = async (user_id, id, deposit) => {
   accountReciver.balance += deposit;
   await accountReciver.save();
 
-  return { deposit, accountReciver: accountReciver.name };
+  return {
+    deposit,
+    Name: accountReciver.name,
+    Last_Name: accountReciver.last_name
+  };
 };
