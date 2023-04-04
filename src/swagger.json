@@ -145,20 +145,13 @@
         }
       }
     },
-    "/users/{email}": {
+    "/users/update": {
       "patch": {
         "tags": [
           "Usuário"
         ],
         "summary": "Alterar a senha",
-        "description": "Essa rota se responsabiliza em alterar a senha do usuário, sendo assim, é necessário estar logado para efetuar a ação. Logo após isso será desconectado e terá que gerar um novo token com a senha nova.",
-        "parameters": [
-          {
-            "name": "email",
-            "in": "path",
-            "description": "Email do usuário para busca"
-          }
-        ],
+        "description": "Essa rota se responsabiliza em alterar a senha do usuário, sendo assim, é necessário estar logado para efetuar a ação.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -321,6 +314,23 @@
         "responses": {
           "200": {
             "description": "OK!"
+          }
+        }
+      }
+    },
+    "/accounts/self": {
+      "get": {
+        "tags": [
+          "Conta"
+        ],
+        "summary": "Pegar informações do usuário logado",
+        "description": "Essa rota será responsável em pegar as informações do usuário logado. Será necessário estar logado para efetuar a ação.",
+        "responses": {
+          "200": {
+            "description": "OK!"
+          },
+          "500": {
+            "description": "Error"
           }
         }
       }

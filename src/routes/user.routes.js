@@ -10,7 +10,7 @@ routes.get('/',
 
 routes.get('/self',
   userAuth,
-  UserController.listInformation
+  UserController.listSelf
 );
 
 routes.get('/:id',
@@ -35,7 +35,8 @@ routes.delete('/delete/:id',
   UserController.deleteUser
 );
 
-routes.patch('/:email',
+routes.patch('/update',
+  userAuth,
   UserController.updateUser
 );
 

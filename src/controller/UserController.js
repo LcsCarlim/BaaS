@@ -3,7 +3,7 @@ const Joi = require('joi');
 const { addTokenToBlackList, tokenIsInBlackList } = require('../services/User/BlackListService');
 const findUserByIdService = require('../services/User/FindUserByIdService');
 const getUserService = require('../services/User/GetUserService');
-const getUserSelf = require('../services/User/GetUserSelf');
+const getUserSelfService = require('../services/User/GetUserSelfService');
 const createUserService = require('../services/User/CreateUserService');
 const createUserAuthService = require('../services/User/CreateUserAuthService');
 const deleteUserService = require('../services/User/DeleteUserService');
@@ -23,10 +23,11 @@ module.exports = {
     }
   },
 
-  async listInformation (req, res) {
+  async listSelf (req, res) {
     try {
       const { id } = req.user;
-      const users = await getUserSelf(id);
+      const users = await getUserSelfService(id);
+
       return res.json(users);
     } catch (error) {
       return res.status(500).json({
@@ -96,7 +97,7 @@ module.exports = {
   },
 
   async updateUser (req, res) {
-    const { id } = req.params;
+    const { id } = req.user;
 
     const { password } = req.body;
 

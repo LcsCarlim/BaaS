@@ -35,6 +35,11 @@ routes.get('/get',
   AccountController.listAccount
 );
 
+routes.get('/self',
+  userAuth,
+  AccountController.selfAccount
+);
+
 routes.get('/:user_id',
   userAuth,
   AccountController.findByIdAccount

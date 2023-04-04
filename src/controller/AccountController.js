@@ -6,6 +6,7 @@ const depositAccountBalanceService = require('../services/Account/DepositAccount
 const transferAccountBalanceService = require('../services/Account/TransferAccountBalanceService');
 const savingsAccountService = require('../services/Account/SavingsAccountService');
 const balanceAccountService = require('../services/Account/BalanceAccountService');
+const getAccountSelfService = require('../services/Account/GetAccountSelfService');
 
 module.exports = {
   async createAccount (req, res) {
@@ -35,6 +36,21 @@ module.exports = {
       });
     }
   },
+
+  async selfAccount (req, res) {
+    try {
+      const { id } = req.user;
+      const account = await getAccountSelfService(id);
+
+      return res.json(account);
+    } catch (error) {
+      return res.status(500).json({
+        error: 'Something wrong happened, try again',
+        message: error.message
+      });
+    }
+  },
+
   async findByIdAccount (req, res) {
     const { role } = req.user;
     const { user_id } = req.params;
