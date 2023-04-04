@@ -1,6 +1,8 @@
 const multer = require('multer');
 const crypto = require('crypto');
 
+// Se responsabiliza na interceptar o upload e salvar o arquivo em uma pasta
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './temp/uploads');
