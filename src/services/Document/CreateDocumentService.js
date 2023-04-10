@@ -1,3 +1,4 @@
+// se responsabiliza para o usuário enviar o documento. Necessário estar logado para efetuar a ação
 const DocumentModel = require('../../database/model/DocumentModel');
 const UserModel = require('../../database/model/UserModel');
 

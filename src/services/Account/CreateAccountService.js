@@ -2,6 +2,7 @@ const AccountModel = require('../../database/model/AccountModel');
 const DocumentModel = require('../../database/model/DocumentModel');
 const UserModel = require('../../database/model/UserModel');
 
+// criação de account do usuário que está logado. Necessário ter validado o documento.
 module.exports = async (user_id) => {
   const accountExists = await AccountModel.findOne({
     user_id

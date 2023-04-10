@@ -9,6 +9,7 @@ const createUserAuthService = require('../services/User/CreateUserAuthService');
 const deleteUserService = require('../services/User/DeleteUserService');
 const updateUserService = require('../services/User/UpdateUserService');
 
+// a requisição role é uma validação do usuário de ser Admin
 module.exports = {
   async list (req, res) {
     const { role } = req.user;
@@ -51,6 +52,7 @@ module.exports = {
     }
   },
 
+  // aqui é utilizado a lib Joi para fazer validação dos dados, tais para estabelecer minimo de caractere e obrigatoriedade.
   async createUser (req, res) {
     const { name, last_name, email, password, address, phone_number } = req.body;
 
@@ -174,6 +176,8 @@ module.exports = {
       });
     }
   },
+
+  // para realizar o logou é necessário o token estar em em uma lista (blacklist) e por fim realizar o logout
   async logout (req, res) {
     const token = req.headers.authorization.split(' ')[1];
     if (tokenIsInBlackList(token)) {

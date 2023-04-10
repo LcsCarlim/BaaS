@@ -25,4 +25,5 @@ const Upload = new mongoose.Schema({
   }
 });
 
+// a parte mongoose.model serve para criar um modelo no banco de dados.
 module.exports = mongoose.model('Upload', Upload);

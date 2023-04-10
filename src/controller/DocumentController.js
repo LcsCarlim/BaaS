@@ -3,6 +3,7 @@ const getDocumentService = require('../services/Document/GetDocumentService');
 const findDocumentByIdService = require('../services/Document/FindDocumentByIdService');
 const fs = require('fs');
 
+// fs.unlinkSync() tem a funcionalidade de apagar a imagem enviada.
 module.exports = {
   async upload (req, res) {
     const { path } = req.file;

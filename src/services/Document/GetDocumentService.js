@@ -1,3 +1,4 @@
+// se responsabiliza em pegar as informações dos documentos de todos os usuários. Necessário ser um Admin
 const DocumentModel = require('../../database/model/DocumentModel');
 
 module.exports = async (role) => {

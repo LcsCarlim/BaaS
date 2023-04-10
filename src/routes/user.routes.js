@@ -4,6 +4,7 @@ const UserController = require('../controller/UserController');
 const userAuth = require('../middlewares/CheckTokenMiddleware');
 const userLogout = require('../middlewares/LogoutMiddleware');
 
+// controle de rotas do User, e passando a rota do autenticador para verificar o token do mesmo.
 routes.get('/',
   userAuth,
   UserController.list

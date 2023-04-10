@@ -1,3 +1,4 @@
+// se responsabiliza em mostrar um usuário pelo ID dele. Só é possível sendo um Admin
 const UserModel = require('../../database/model/UserModel');
 
 module.exports = async (id, role) => {

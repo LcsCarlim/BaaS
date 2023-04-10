@@ -1,5 +1,6 @@
 const AccountModel = require('../../database/model/AccountModel');
 
+// se responsabiliza em listar todos os account. Porém é necessário ser Admin
 module.exports = async (role) => {
   if (role !== 'Admin') throw new Error('Must be an admin');
 

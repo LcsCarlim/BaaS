@@ -1,3 +1,4 @@
+// se responsabiliza em fazer o login do usuário. Após efetuar login o usuário fica com um token
 const { compare } = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const UserModel = require('../../database/model/UserModel');

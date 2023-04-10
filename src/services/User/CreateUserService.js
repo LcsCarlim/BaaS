@@ -1,3 +1,4 @@
+// se responsabiliza para criação de um usuário. Tendo algumas obrigatoriedades.
 const UserModel = require('../../database/model/UserModel');
 
 module.exports = async (name, last_name, email, password, address, phone_number) => {

@@ -1,5 +1,6 @@
 const AccountModel = require('../../database/model/AccountModel');
 
+// resgata o valor do savings e retorna para o balance. Necessário estar logado.
 module.exports = async (user_id, deposit) => {
   const account = await AccountModel.findOne({
     user_id

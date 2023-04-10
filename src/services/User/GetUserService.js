@@ -1,3 +1,4 @@
+// se responsabiliza em listar todos os usuários, porém é necessário ser um Admin
 const UserModel = require('../../database/model/UserModel');
 
 module.exports = async (role) => {

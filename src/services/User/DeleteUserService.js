@@ -1,3 +1,4 @@
+// se responsabiliza em deletar um usuário. Só é possível sendo um Admin
 const UserModel = require('../../database/model/UserModel');
 const DocumentModel = require('../../database/model/DocumentModel');
 const AccountModel = require('../../database/model/AccountModel');

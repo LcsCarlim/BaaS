@@ -1,3 +1,4 @@
+// se responsabiliza exibir as informações do próprio usuário para o mesmo
 const UserModel = require('../../database/model/UserModel');
 
 module.exports = async (id) => {

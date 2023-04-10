@@ -1,3 +1,4 @@
+// se responsabiliza em transferir valor do balance para o savings. É necessário estar logado
 const AccountModel = require('../../database/model/AccountModel');
 
 module.exports = async (user_id, deposit) => {

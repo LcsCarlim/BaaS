@@ -1,5 +1,6 @@
 const AccountModel = require('../../database/model/AccountModel');
 
+// se responsabiliza em transferir de account para o outro account utilizando o ID. É necessário estar logado.
 module.exports = async (user_id, id, deposit) => {
   const accountPayer = await AccountModel.findOne({
     user_id: id

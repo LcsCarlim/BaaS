@@ -1,3 +1,6 @@
+// esse service se responsabiliza em alterar a senha do usuário. Gerando um hash para um nova senha e não expôr dado sensível.
+// Só possível se o usuário estiver logado
+
 const bcrypt = require('bcryptjs');
 
 const UserModel = require('../../database/model/UserModel');

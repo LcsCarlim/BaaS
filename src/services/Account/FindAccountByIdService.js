@@ -1,5 +1,6 @@
 const AccountModel = require('../../database/model/AccountModel');
 
+// obtêm informações da account de um usuário pelo ID do mesmo. Necessário ser um Admin
 module.exports = async (user_id, role) => {
   if (role !== 'Admin') throw new Error('Must be an admin');
 

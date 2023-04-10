@@ -5,6 +5,7 @@ const userAuth = require('../middlewares/CheckTokenMiddleware');
 
 const AccountController = require('../controller/AccountController');
 
+// controle de rotas do Account, e passando a rota do autenticador para verificar o token do mesmo.
 routes.post('/',
   userAuth,
   AccountController.createAccount
@@ -43,10 +44,6 @@ routes.get('/self',
 routes.get('/:user_id',
   userAuth,
   AccountController.findByIdAccount
-);
-
-routes.patch('/:user_id',
-  AccountController.updateAccountService
 );
 
 module.exports = routes;

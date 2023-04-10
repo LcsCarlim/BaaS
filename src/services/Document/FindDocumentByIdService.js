@@ -1,3 +1,4 @@
+// encontrar um documento pelo ID. Necessário ser um Admin
 const DocumentModel = require('../../database/model/DocumentModel');
 
 module.exports = async (user_id, role) => {

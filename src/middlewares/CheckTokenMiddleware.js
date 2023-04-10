@@ -1,8 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { tokenIsInBlackList } = require('../services/User/BlackListService');
 
-// Colocar token em uma lista para efetuar o logout
-
+// verificar se o token é válido.
 module.exports = async (req, res, next) => {
   const authHeader = req.headers.authorization;
   const token = authHeader && authHeader.split(' ')[1];

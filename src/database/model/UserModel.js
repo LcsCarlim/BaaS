@@ -18,7 +18,7 @@ const User = new mongoose.Schema({
   },
   password: {
     type: String,
-    require: true,
+    required: true,
     selector: false
   },
 
@@ -42,6 +42,7 @@ const User = new mongoose.Schema({
   }
 });
 
+// é responsável para que seja salvo no banco de dados, e a senha passada com hash
 User.pre('save', async function (next) {
   const hashedPassword = await bcrypt.hash(this.password, 12);
   this.password = hashedPassword;
