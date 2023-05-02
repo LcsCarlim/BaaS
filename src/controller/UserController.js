@@ -177,7 +177,7 @@ module.exports = {
     }
   },
 
-  // para realizar o logou é necessário o token estar em em uma lista (blacklist) e por fim realizar o logout
+  // para realizar o logout é necessário o token estar em em uma lista (blacklist) e por fim realizar o logout
   async logout (req, res) {
     const token = req.headers.authorization.split(' ')[1];
     if (tokenIsInBlackList(token)) {
